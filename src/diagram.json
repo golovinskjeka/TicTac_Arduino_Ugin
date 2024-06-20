@@ -1,0 +1,64 @@
+{
+  "version": 1,
+  "author": "Евгений Головинский",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "board-esp32-devkit-c-v4", "id": "esp", "top": -19.2, "left": -4.76, "attrs": {} },
+    { "type": "wokwi-analog-joystick", "id": "joystick1", "top": -0.6, "left": -177, "attrs": {} },
+    {
+      "type": "board-ssd1306",
+      "id": "oled1",
+      "top": 79.94,
+      "left": 125.03,
+      "attrs": { "i2cAddress": "0x3c" }
+    },
+    {
+      "type": "wokwi-analog-joystick",
+      "id": "joystick2",
+      "top": -10.2,
+      "left": 264.6,
+      "attrs": {}
+    },
+    { "type": "wokwi-led", "id": "led1", "top": -42, "left": -73, "attrs": { "color": "red" } },
+    { "type": "wokwi-led", "id": "led2", "top": -42, "left": 215, "attrs": { "color": "red" } },
+    {
+      "type": "wokwi-resistor",
+      "id": "r1",
+      "top": -53.65,
+      "left": -9.6,
+      "attrs": { "value": "1000" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r2",
+      "top": 3.95,
+      "left": 172.8,
+      "attrs": { "value": "1000" }
+    }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "joystick1:GND", "esp:GND.1", "black", [ "v9.6", "h96", "v9.6" ] ],
+    [ "joystick1:VCC", "esp:3V3", "red", [ "v48", "h115.2", "v-153.6" ] ],
+    [ "joystick1:VERT", "esp:14", "green", [ "v38.4", "h115.2", "v-38.4" ] ],
+    [ "joystick1:HORZ", "esp:27", "blue", [ "v28.8", "h86.4", "v-38.4" ] ],
+    [ "joystick1:SEL", "esp:26", "gold", [ "v19.2", "h38.4", "v-38.4" ] ],
+    [ "oled1:GND", "esp:GND.2", "black", [ "v0" ] ],
+    [ "oled1:VCC", "esp:3V3", "red", [ "v-86.4", "h-163.05" ] ],
+    [ "oled1:SCL", "esp:22", "green", [ "v-28.8", "h0.3", "v-9.6" ] ],
+    [ "oled1:SDA", "esp:21", "gold", [ "v-28.8", "h-95.93" ] ],
+    [ "joystick2:VCC", "oled1:VCC", "red", [ "v19.2", "h-57.6", "v-57.6", "h-67.2" ] ],
+    [ "joystick2:GND", "oled1:GND", "black", [ "v28.8", "h-86.4", "v-86.4", "h-86.4" ] ],
+    [ "joystick2:VERT", "esp:25", "violet", [ "v105.6", "h-355.2", "v-124.8" ] ],
+    [ "joystick2:HORZ", "esp:33", "white", [ "v115.2", "h-374.4", "v-144" ] ],
+    [ "joystick2:SEL", "esp:32", "green", [ "v124.8", "h-393.6", "v-163.2" ] ],
+    [ "led2:A", "esp:19", "white", [ "v38.4", "h-134.4", "v38.4" ] ],
+    [ "led1:A", "esp:18", "violet", [ "v38.4", "h38.4", "v-57.6", "h134.4", "v96" ] ],
+    [ "led1:C", "r1:1", "black", [ "v19.2", "h19.6", "v-67.2" ] ],
+    [ "r1:2", "esp:GND.2", "black", [ "v0", "h56.4", "v57.6" ] ],
+    [ "r2:2", "led2:C", "black", [ "v0" ] ],
+    [ "r2:1", "esp:GND.2", "black", [ "v0" ] ]
+  ],
+  "dependencies": {}
+}
